@@ -1,51 +1,42 @@
-import React, { useState } from 'react';
-
-import { postData } from "../actions";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
-const AddSmurfForm = props => {
-  const[smurf, setSmurf] = useState({
-    name: '',
-    age: '',
-    height: ''
-  });
+import { postData } from "../actions";
 
-const handleChanges = event => {
-    setSmurf({
-        [event.target.name]: event.target.value
-    });
-    console.log('+++++++', smurf);
-  }
+const AddSmurfForm = (props) => {
+	const [inputValues, setInputValues] = useState({
+		name: "",
+		age: "",
+		height: ""
+	});
 
-const handleSubmit = event => {
-    event.preventDefault();
-    props.postData(smurf);
-    console.log('+++++++', smurf);
-    setSmurf({
-      name: '',
-      age: '',
-      height: '',
-  });
-}
+	const handleChange = e => {
+		setInputValues({
+			...inputValues,
+			[e.target.name]: e.target.value
+		});
+	};
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' name='name' placeholder='add name..' value={smurf.name} onChange={handleChanges}/>
-      <input type='text' name='age' placeholder='add age..' value={smurf.age} onChange={handleChanges}/>
-      <input type='text' name='height' placeholder='add height..' value={smurf.height} onChange={handleChanges}/>
-      <button>Add</button>
-    </form>
-  );
+	const handleSubmit = e => {
+		e.preventDefault();
+		props.postData(inputValues);
+		setInputValues({
+			name: "",
+			age: "",
+			height: ""
+		});
+	};
+
+	return (
+		<div>
+			<form onSubmit={handleSubmit}>
+				<input type="text" name="name" value={inputValues.name} onChange={handleChange} placeholder="Name"/>
+				<input type="text" name="age" value={inputValues.age} onChange={handleChange} placeholder="Age"/>
+				<input type="text" name="height"value={inputValues.height} onChange={handleChange} placeholder="Height"/>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	);
 };
 
-
-const mapStateToProps = state => {
-return {
-    isFetchingData: state.isFetchingData
-    }
-};
-
-export default connect(
-  mapStateToProps,
-  { postData }
-)(AddSmurfForm);
+export default connect(null, { postData })(AddSmurfForm);

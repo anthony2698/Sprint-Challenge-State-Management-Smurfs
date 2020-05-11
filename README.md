@@ -23,10 +23,26 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+Context API allows for data to be stored in the context object, allowing for components to retrieve thier corresponding data through the context object not props.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions are objects that return a type and optional payload from action creators.
+Reducers make a copy of the state and an action, they never update state directly making them oure functions that bring actions and redux store together.
+Store is where the state of the application resides. 
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Application state is the main state. Where data gets updated or changed unlike component state just keeps track of a single type of state for that component. Application state is used to render information to the UI and component state is used to keep track of a form entry.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+Redux-thunk is used to intercept normal redux flow to make the flow asynchronous. It allows us to make API calls from our action-creators.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+I like the way redux works even though context api is easier because of the simple fact of not having to change component structure to adapt context api.
 
 ## Project Set Up
 
